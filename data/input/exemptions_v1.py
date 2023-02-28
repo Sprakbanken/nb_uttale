@@ -24,11 +24,11 @@ exemption_veg = {
 exemption_retro_sj = {
     "ruleset": "errorfix_retro_sj",
     "words": [
-		"Antikvitetshuset_Tordenskjold", "Bjørnskinn",
+        "Antikvitetshuset_Tordenskjold", "Bjørnskinn",
         "Erik_Werenskiolds_vei", "Tordenskiolds_gate",
         "Ullernchauseen", "Ullernchausséen", "Wærenskjold",
         "brunsjer", "punching", "tordensky", "tordenskyer"
-	],
+    ],
 }
 
 exemption_r_sj = {
@@ -45,9 +45,9 @@ exemption_g_plosive_ng = {
     "ruleset": "dialect_g_plosive_ng",
     "words": [
         "festningslignende", "lignifisering", "ringesignal", "ringesignaler", "sammenligningssetning",
-        "sammenligningssetningen", "sammenligningssetningene", "sammenligningssetningenes", 
-        "sammenligningssetningens", "sammenligningssetninger", "sammenligningssetningers", 
-        "sammenligningssetnings", "signalering", "signalisering", "signaloverføringen", "styringssignaler" 
+        "sammenligningssetningen", "sammenligningssetningene", "sammenligningssetningenes",
+        "sammenligningssetningens", "sammenligningssetninger", "sammenligningssetningers",
+        "sammenligningssetnings", "signalering", "signalisering", "signaloverføringen", "styringssignaler"
     ],
 }
 
@@ -75,7 +75,7 @@ exemption_d_plosive_ld = {
         "heildagsstillingene", "heildagsstillingenes", "heildagsstillingens", "heildagsstillinger",
         "heildagsstillingers", "heildagsstillings", "kildetilfang", "militærkilder", "miljøskildring",
         "miljøskildringa", "miljøskildringas", "miljøskildringen", "miljøskildringene", "miljøskildringenes",
-        "miljøskildringens", "miljøskildringer", "miljøskildringers", "miljøskildrings", "skjoldlus'", 
+        "miljøskildringens", "miljøskildringer", "miljøskildringers", "miljøskildrings", "skjoldlus'",
         "skjoldlus", "skjoldlusa", "skjoldlusas", "skjoldlusen", "skjoldlusene", "skjoldlusenes", "skjoldlusens"
     ],
 }

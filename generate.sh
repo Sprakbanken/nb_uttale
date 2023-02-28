@@ -1,19 +1,23 @@
 #!/usr/bin/env bash
 
-
-# KONFIGURER PARAMETERVERDIER
+# KONFIGURER INNDATA-FILSTI
 DIR="data/input"
-UTDIR="data/output"
-DB="${DIR}/nst_lexicon_bm.db"
-NYORD="${DIR}/newwords_2022.csv"
-DIALEKTER="e_spoken,e_written,sw_spoken,sw_written,w_spoken,w_written,t_spoken,t_written,n_spoken,n_written"
-REGLER="${DIR}/rules_v1.py"
-UNNTAK="${DIR}/exemptions_v1.py"
-UTPREFIKS="nb_uttale_bm"
-TRANSKRIPSJONSSTANDARDER="ipa,sampa,nofabet"
 
 # GENERER UTTALELEKSIKA MED DIALEKTVARIASJONER
-lexupdater -v -db $DB -o $UTDIR \
-    insert -n $NYORD \
-    update -d $DIALEKTER -r $REGLER -e $UNNTAK -op $UTPREFIKS \
-    #convert --standard=$TRANSKRIPSJONSSTANDARDER
+lexupdater -v \
+    --database "${DIR}/nst_lexicon_bm.db" \
+    --newwords-path "${DIR}/newwords_2022.csv" \
+    --dialects e_spoken \
+        -d e_written \
+        -d sw_spoken \
+        -d sw_written \
+        -d w_spoken \
+        -d w_written \
+        -d t_spoken \
+        -d t_written \
+        -d n_spoken \
+        -d n_written \
+    update \
+        --rules-file "${DIR}/rules_v1.py" \
+        --exemptions-file "${DIR}/exemptions_v1.py" \
+        --output-dir "data/output" \
