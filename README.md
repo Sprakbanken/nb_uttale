@@ -12,15 +12,16 @@ Generer dialektspesifikke versjoner av det tidligere [NST uttaleleksikonet for b
 python -m pip install git+https://github.com/Sprakbanken/lexupdater.git
 ```
 
-## Last ned databasefilen
+## Databasefilen
 
-- Last ned [`nst_lexicon_bm.db`](https://github.com/Sprakbanken/lexupdater/releases/download/v0.7.0/nst_lexicon_bm.db) fra lexupdater release [v0.7.0](https://github.com/Sprakbanken/lexupdater/releases/tag/v0.7.0)
-- Lagre filen i [`data/input`](./data/input/)-mappen.
+- NST uttaleleksikon er lastet inn i en SQLite databasefil, og lagret som en [github LFS](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage) i dette repoet: [`data/input/nst_lexicon_bm.db`](https://github.com/Sprakbanken/nb_uttale/blob/main/data/input/nst_lexicon_bm.db).
+
+Ved problemer med Github LFS: 
+1. Last ned filen på nytt: [`nst_lexicon_bm.db`](https://github.com/Sprakbanken/lexupdater/releases/download/v0.7.0/nst_lexicon_bm.db) (fra lexupdater release [v0.7.0](https://github.com/Sprakbanken/lexupdater/releases/tag/v0.7.0)).
+2. Lagre filen i [`data/input`](./data/input/)-mappen.
 
 
 ## Generer uttaleleksikon med dialektvariasjon
-
-**OBS! lexupdater er under debugging.**
 
 ``` shell
 ./generate.sh
