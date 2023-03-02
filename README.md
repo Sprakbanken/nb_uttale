@@ -14,11 +14,18 @@ python -m pip install git+https://github.com/Sprakbanken/lexupdater.git
 
 ## Databasefilen
 
-- NST uttaleleksikon er lastet inn i en SQLite databasefil, og lagret som en [github LFS](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage) i dette repoet: [`data/input/nst_lexicon_bm.db`](https://github.com/Sprakbanken/nb_uttale/blob/main/data/input/nst_lexicon_bm.db).
+NST uttaleleksikon er lastet inn i en SQLite databasefil (`nst_lexicon_bm.db`) med en ordtabell (`words`) og en uttaletabell (`pron`).
 
-Ved problemer med Github LFS: 
-1. Last ned filen på nytt: [`nst_lexicon_bm.db`](https://github.com/Sprakbanken/lexupdater/releases/download/v0.7.0/nst_lexicon_bm.db) (fra lexupdater release [v0.7.0](https://github.com/Sprakbanken/lexupdater/releases/tag/v0.7.0)).
-2. Lagre filen i [`data/input`](./data/input/)-mappen.
+Last filen ned her, og flytt filen inn i [`data/input`](./data/input/)-mappen:
+https://www.nb.no/sbfil/uttaleleksikon/nst_lexicon_bm.db
+
+
+
+Evt. kan du laste ned fila til direkte til mappen via terminalen:
+
+```shell
+wget -P data/input https://www.nb.no/sbfil/uttaleleksikon/nst_lexicon_bm.db
+```
 
 
 ## Generer uttaleleksikon med dialektvariasjon
