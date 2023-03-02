@@ -14,7 +14,7 @@ python -m pip install git+https://github.com/Sprakbanken/lexupdater.git
 
 ## Databasefilen
 
-NST uttaleleksikon er lastet inn i en SQLite databasefil (`nst_lexicon_bm.db`) med en ordtabell (`words`) og en uttaletabell (`pron`).
+NST uttaleleksikon er lastet inn i en SQLite databasefil (`nst_lexicon_bm.db`) med en ordtabell (`words`) og en uttaletabell (`base`).
 
 Last filen ned her, og flytt filen inn i [`data/input`](./data/input/)-mappen:
 https://www.nb.no/sbfil/uttaleleksikon/nst_lexicon_bm.db
