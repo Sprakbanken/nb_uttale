@@ -57,3 +57,7 @@ Databasefilen har to tabeller, som kan kobles sammen med feltet `unique_id`.
 
   1. `words`: Indeksen er feltet `word_id`. Inneholder bl.a. ordformer på bokmål (`wordform`), ordklasser (`pos`) og morfologiske trekk (`feats`), samt `unique_id`.
   2. `base`: Indeksen er feltet `pron_id`. Inneholder uttaletranskripsjoner (`nofabet`) på transkripsjonsstandarden NoFAbet. En konverteringstabell mellom [X-SAMPA](https://en.wikipedia.org/wiki/X-SAMPA) og NoFAbet er tilgjengelig [her](https://www.nb.no/sbfil/verktoy/nofa/NoFA-no-1_0.pdf). Har også `unique_id`, som peker til ordformene i `words` som transkripsjonene hører til.
+
+## Kontakt
+
+Har du spørsmål eller problemer med å kjøre koden? Opprett et [issue](https://github.com/Sprakbanken/nb_uttale/issues).
