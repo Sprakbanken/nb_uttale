@@ -1,32 +1,23 @@
-# nb_uttale
+# NB Uttale: Uttaleleksikon med dialektvariasjon
 
-Generer dialektspesifikke versjoner av det tidligere [NST uttaleleksikonet for bokmål](https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-23/), tilgjengelig fra Språkbankens ressurskatalog.
+Med skriptet `generate.sh` i dette repoet kan du generere dialektspesifikke versjoner av [NST uttaleleksikon for bokmål](https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-23/) fra Språkbankens [ressurskatalog](https://www.nb.no/sprakbanken/ressurskatalog/).
 
-## Installer `lexupdater`
+## Oppsett
 
-- Åpne terminalen eller kommandolinjen
-  - Krever at python>=3.8 er installert ([last ned python her](https://www.python.org/downloads/))
-- Installer lexupdater fra git:
+- Forsikre deg om at du har python >= 3.8 installert ([last ned python her](https://www.python.org/downloads/))
 
-```shell
-python -m pip install git+https://github.com/Sprakbanken/lexupdater.git
-```
+- Installer `lexupdater`:
 
-## Databasefilen
+    ```shell
+    python -m pip install lexupdater-0.7.5-py3-none-any.whl
+    ```
 
-NST uttaleleksikon er lastet inn i en SQLite databasefil (`nst_lexicon_bm.db`) med en ordtabell (`words`) og en uttaletabell (`base`).
+- Last ned SQLite-databasefilen `nst_lexicon_bm.db` med NST uttaleleksikon:
 
-Last filen ned her, og flytt filen inn i [`data/input`](./data/input/)-mappen:
-https://www.nb.no/sbfil/uttaleleksikon/nst_lexicon_bm.db
-
-
-
-Evt. kan du laste ned fila til direkte til mappen via terminalen:
-
-```shell
-wget -P data/input https://www.nb.no/sbfil/uttaleleksikon/nst_lexicon_bm.db
-```
-
+    ```shell
+    wget -P data/input https://www.nb.no/sbfil/uttaleleksikon/nst_lexicon_bm.db
+    ```
+Mer info om innholdet i databasefilen står [her](#databasefilen).
 
 ## Generer uttaleleksikon med dialektvariasjon
 
@@ -34,15 +25,35 @@ wget -P data/input https://www.nb.no/sbfil/uttaleleksikon/nst_lexicon_bm.db
 ./generate.sh
 ```
 
-Skriptet definerer parameterverdier og hvilke prosesser leksikonet går gjennom:
+Utdata er 10 csv-filer, som heter `data/output/{DIALEKT}_pronunciation_lexicon.csv` der DIALEKT er en av disse 10:
 
-1. Nyord legges til, fra `newwords_2022.csv`-filen i `data/input`.
-    - Nyordene som Språkbanken har lagt til har prefikset "NB" foran løpenummeret i `"wordform_id"`
-    - Nyordene er hentet fra Norsk Aviskorpus og Målfrid-korpuset. `"update_info"`-feltet indikerer hvilket korpus ordene kommer fra.
-2. Dialektvariasjon i uttaletranskripsjonene genereres med regel- og unntaksfiler.
-    - Regelfilene `rules_v1.py` og `exemptions_v1.py` er utviklet av Språkbanken 2021-2022.
-    - Dialektvariasjonen er generert med regex-mønstre.
-3. 10 uttaleleksikon skrives ut: 5 dialektområder med to uttalevarianter per dialekt (talenær og skriftnær).
-    - 5 dialektområder: østnorsk (`e`), sørvestnorsk (`sw`), vestnorsk (`w`), trøndersk (`t`), nordnorsk (`n`).
-    - Talenær (`spoken`): uttaletranskripsjoner som ligner spontan tale på dialekten
-    - Skriftnær (`written`): Uttaletranskripsjoner som ligner høytlesning av bokmålstekst på den gitte dialekten.
+- e_spoken
+- e_written
+- n_spoken
+- n_written
+- sw_spoken
+- sw_written
+- t_spoken
+- t_written
+- w_spoken
+- w_written
+
+## Parameterverdier
+
+Skriptet definerer parameterverdier for inndata og hvilke prosesser leksikonet går gjennom med `lexupdater update`-kommandoen:
+
+Parameter | Beskrivelse
+--- | ---
+`-v, -vv` | Ordrikhet (av eng. "verbosity") i loggen, som skrives til `data/output/log.txt`
+`-db, --database` |  Databasefilen med NST-leksikonet.
+`-n, --newwords-path` | Nyord legges til fra `data/input/newwords_2022.csv`-filen. Nyordene som Språkbanken har lagt til har prefikset "NB" foran løpenummeret i `"wordform_id"`. Nyordene er hentet fra Norsk Aviskorpus og Målfrid-korpuset. `"update_info"`-feltet indikerer hvilket korpus ordene kommer fra.
+`-d, --dialects` | Uttalevariantene som transkripsjonene skal oppdateres for. Utdata er én fil per verdi som angis med dette flagget. Språkbanken har utviklet regler for 5 dialektområder (østnorsk (`e`), sørvestnorsk (`sw`), vestnorsk (`w`), trøndersk (`t`), nordnorsk (`n`) ) og to uttalevarianter per dialekt. Talenære (`spoken`) transkripsjoner ligner spontan tale på dialekten. Skriftnære (`written`) transkripsjoner ligner høytlesning av bokmålstekst på den gitte dialekten.
+`-r, --rules-file` | python-fil med regelsett-`dict`-objekter. Dialektvariasjonen er generert med regex-mønstre og "søk-erstatt"-transformasjoner. Regelfilene `rules_v1.py` og `exemptions_v1.py` er utviklet av Språkbanken 2021-2022.
+`-e, --exemptions-file` | python-fil med `dict`-objekter som angir hvilke ord et regelsett skal ignorere.
+
+## Databasefilen
+
+Databasefilen har to tabeller, som kan kobles sammen med feltet `unique_id`.
+
+  1. `words`: Indeksen er feltet `word_id`. Inneholder bl.a. ordformer på bokmål (`wordform`), ordklasser (`pos`) og morfologiske trekk (`feats`), samt `unique_id`.
+  2. `base`: Indeksen er feltet `pron_id`. Inneholder uttaletranskripsjoner (`nofabet`) på transkripsjonsstandarden NoFAbet. En konverteringstabell mellom [X-SAMPA](https://en.wikipedia.org/wiki/X-SAMPA) og NoFAbet er tilgjengelig [her](https://www.nb.no/sbfil/verktoy/nofa/NoFA-no-1_0.pdf). Har også `unique_id`, som peker til ordformene i `words` som transkripsjonene hører til.
