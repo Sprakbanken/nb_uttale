@@ -1,5 +1,7 @@
 # NB Uttale: Pronunciation lexicon with dialectal variation for Norwegian
 
+[![lang-button](https://img.shields.io/badge/-Norsk-blue)](https://github.com/Sprakbanken/nb_uttale/blob/main/LESMEG.md) [![lang-button](https://img.shields.io/badge/-English-grey)](https://github.com/Sprakbanken/nb_uttale/blob/main/README.md)
+
 This repo contains a script and data to generate pronunication lexica with dialect variation for spoken Norwegian, and with wordforms in the bokmål written standard.
 
 The base lexicon is [NST Pronunciation Lexicon for Norwegian Bokmål](https://www.nb.no/sprakbanken/en/resource-catalogue/oai-nb-no-sbr-23/) from the Norwegian Language Bank's [resource catalogue](https://www.nb.no/sprakbanken/en/resource-catalogue/).
@@ -93,4 +95,4 @@ Table | Description
 
 ## Contact
 
-If you have questions, suggestions or problems running the code, please create an [issue](https://github.com/Sprakbanken/nb_uttale/issues).
+If you have questions, suggestions or problems running the code, please [create an issue](https://github.com/Sprakbanken/nb_uttale/issues).

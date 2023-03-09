@@ -1,5 +1,8 @@
 # NB Uttale: Uttaleleksikon med dialektvariasjon
 
+[![lang-button](https://img.shields.io/badge/-Norsk-grey)](https://github.com/Sprakbanken/nb_uttale/blob/main/LESMEG.md) [![lang-button](https://img.shields.io/badge/-English-blue)](https://github.com/Sprakbanken/nb_uttale/blob/main/README.md)
+
+
 Dette repoet inneholder skript og data for å generere dialektspesifikke versjoner av [NST uttaleleksikon for bokmål](https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-23/) fra Språkbankens [ressurskatalog](https://www.nb.no/sprakbanken/ressurskatalog/).
 
 ## Oppsett
@@ -55,6 +58,8 @@ Filene inneholder følgende felter:
 | ipa_transcription | Uttaletranskripsjon med [IPA](https://no.wikipedia.org/wiki/Det_internasjonale_fonetiske_alfabetet)-notasjon |
 | sampa_transcription | Uttaletranskripsjon med [X-SAMPA](https://en.wikipedia.org/wiki/X-SAMPA)-notasjon |
 
+Konverteringen fra NoFAbet til de andre transkripsjonsstandardene er gjort med kode fra [Sprakbanken/convert_nofabet](https://github.com/Sprakbanken/convert_nofabet).
+
 
 ## Parameterverdier
 
@@ -71,7 +76,7 @@ Parameter | Beskrivelse
 
 ## Inndatafilene i [`data/input/`](https://github.com/Sprakbanken/nb_uttale/tree/main/data/input)
 
-Filene med inndata brukes til å oppdatere bokmålsordlisten og de østnorske transkripsjonene i [databasefilen](#databasefilen).
+Filene med inndata brukes til å oppdatere bokmålsordlisten og de østnorske transkripsjonene i [databasefilen](#databasefilen). De har blitt utviklet av lingvister i [Språkbanken](https://www.nb.no/sprakbanken/) ved Nasjonalbiblioteket 2021-2022.
 
 Filnavn | Beskrivelse
 --- | ---
@@ -92,4 +97,4 @@ Tilbake til [Oppsett](#oppsett).
 
 ## Kontakt
 
-Har du spørsmål eller problemer med å kjøre koden? Opprett et [issue](https://github.com/Sprakbanken/nb_uttale/issues).
+Har du spørsmål eller problemer med å kjøre koden? [Opprett et issue](https://github.com/Sprakbanken/nb_uttale/issues/new)
