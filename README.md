@@ -68,7 +68,8 @@ Parameter | Description
 `-db, --database` |  File path to the SQLite database file with the NST lexicon.
 `-n, --newwords-path` | File path to a csv file with new word records to add. Each new word (row) in the file gets a `wordform_id` with the prefix "NB" and a count number.
 `-d, --dialects` | Categories of pronunciation variation that the transcriptions are updated for. The command writes 1 csv file for each argument given by this flag.
-`-r, --rules-file` | python file with ruleset `dict` objects. The dialectal variation is generated with regex patterns and replacement strings, as well as constraints. `-e, --exemptions-file` | python file with `dict`-objects indicating words that should be ignored by a given ruleset.
+`-r, --rules-file` | Python file with ruleset `dict` objects. The dialectal variation is generated with regex patterns and replacement strings, as well as constraints.
+`-e, --exemptions-file` | Python file with `dict`-objects indicating words that should be ignored by a given ruleset.
 
 
 ## Files in `data/input`
@@ -77,16 +78,18 @@ These files have been developed by linguists in the Norwegian Language Bank 2021
 
 Filename | Description
 --- | ---
-`newwords_2022.csv` | Each row contains the wordform (`token`), a main East Norwegian `transcription`, up to 3 `alternative_transcription`s, the `pos`-tag and `morphology` features of the word. These words come from the [Målfrid corpus](https://www.nb.no/sprakbanken/en/resource-catalogue/oai-nb-no-sbr-69/) or the [Norwegian Newspaper Corpus Bokmål](https://www.nb.no/sprakbanken/en/resource-catalogue/oai-clarino-uib-no-avis-plain/), which is indicated in the `update_info` field.
-`rules_v1.py` | The Norwegian Language Bank has developed transformation rules for 5 Norwegian dialectal areas (East (`e`), South-West (`sw`), West (`w`), Trøndelag (`t`), North (`n`) ), and for 2 variants per dialect: `spoken` transcriptions are close to spontaneous speech in the given dialect, and `written` transcriptions are closer to the pronunciation of a bokmål manuscript being read out loud in the given dialect.
-`exemptions_v1.py` | Specific wordlists that should be ignored by rulesets defined in `rules_v1.py`. The ruleset `name` value maps to the exemption `ruleset` value.
+`newwords_2022.csv` | Each row contains the wordform (`token`), an East Norwegian `transcription`, up to 3 `alternative_transcription`s, the `pos`-tag and `morphology` features of the word. These words come from the [Målfrid corpus](https://www.nb.no/sprakbanken/en/resource-catalogue/oai-nb-no-sbr-69/) or the [Norwegian Newspaper Corpus Bokmål](https://www.nb.no/sprakbanken/en/resource-catalogue/oai-clarino-uib-no-avis-plain/), which is indicated in the `update_info` field.
+`rules_v1.py` | The Norwegian Language Bank has developed transformation rules for 5 Norwegian dialectal areas: East (`e`), South-West (`sw`), West (`w`), Trøndelag (`t`), North (`n`). There are 2 variants per dialect: `spoken` transcriptions are close to spontaneous speech in the given dialect, and `written` transcriptions are closer to the pronunciation of a bokmål manuscript being read out loud in the given dialect.
+`exemptions_v1.py` | Specific words that should be ignored by rulesets defined in `rules_v1.py`. The ruleset `name` values map to the exemption `ruleset` values.
 
 ## Database file
 
 The SQLite file has two tables, which can be joined with the `unique_id` field.
 
-  1. `words`: The index is `word_id`. Contains wordforms in bokmål (`wordform`), part-of-speech (`pos`), and morphological features (`feats`), as well as `unique_id`, and more.
-  2. `base`: The index is `pron_id`. Contains pronunciation transcriptions for East Norwegian (`nofabet`). A mapping between the [X-SAMPA](https://en.wikipedia.org/wiki/X-SAMPA) transcription standard and the NoFAbet notation can be found [here](https://www.nb.no/sbfil/verktoy/nofa/NoFA-en-1_0.pdf). Values in `unique_id` maps to the transcription's written wordform in `words`.
+Table | Description
+--- | ---
+`words` | The index is `word_id`. Contains wordforms in bokmål (`wordform`), part-of-speech (`pos`), and morphological features (`feats`), as well as `unique_id`, and more.
+`base` | The index is `pron_id`. Contains pronunciation transcriptions for East Norwegian (`nofabet`). A mapping between the [X-SAMPA](https://en.wikipedia.org/wiki/X-SAMPA) transcription standard and the NoFAbet notation can be found [here](https://www.nb.no/sbfil/verktoy/nofa/NoFA-en-1_0.pdf). Values in `unique_id` maps to the transcription's written wordform in `words`.
 
 ## Contact
 
