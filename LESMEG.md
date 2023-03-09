@@ -25,7 +25,22 @@ Mer info om innholdet i databasefilen står [her](#databasefilen).
 ./generate.sh
 ```
 
-Utdata er 10 csv-filer, som heter `data/output/{DIALEKT}_pronunciation_lexicon.csv` der DIALEKT er en av disse 10:
+## Utdata
+
+Utdata er 10 csv-filer som inneholder følgende felter:
+
+| Felt | Beskrivelse |
+| --- | --- |
+| wordform | Ordform slik den forekommer i bokmålstekst, med `_` istedet for mellomrom |
+| pos | Ordklasse (Part-of-speech) |
+| feats | Morfologiske trekk |
+| wordform_id | Identifikator for ordform. Samme ordform kan ha flere uttalemåter, da vil ID-en gjenta seg. Samme skrivemåte i tekst kan også være forskjellige ord (f.eks. verbet "(jeg) skriver" og substantivet "(en) skriver"), da vil ID-en være forskjellig |
+| update_info | Ekstra informasjon om oppslagets kilde. Nyord som legges til her kommer enten fra [Målfrid](https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-69/)-korpuset eller [Norsk Aviskorpus](https://www.nb.no/sprakbanken/ressurskatalog/oai-clarino-uib-no-avis-plain/) |
+| nofabet_transcription | Uttaletranskripsjon med [NoFAbet](https://github.com/peresolb/g2p-no#transcription-standard)-notasjon |
+| ipa_transcription | Uttaletranskripsjon med [IPA](https://no.wikipedia.org/wiki/Det_internasjonale_fonetiske_alfabetet)-notasjon |
+| sampa_transcription | Uttaletranskripsjon med [X-SAMPA](https://en.wikipedia.org/wiki/X-SAMPA)-notasjon |
+
+Filstiene er `data/output/{DIALEKT}_pronunciation_lexicon.csv`, der DIALEKT er en av disse 10:
 
 - e_spoken
 - e_written
