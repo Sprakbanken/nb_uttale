@@ -51,31 +51,43 @@ The files contain these columns:
 | pos | Part-of-speech |
 | feats | Morphological features |
 | wordform_id | Wordform identificator. When the same wordform has several possible transcriptions, the wordform_id is repeated. When a wordform is repeated and represent different grammatical/lexical concepts, the wordform_id is different. E.g. the verb "jeg skriver" (_I write_) vs. the noun "en skriver" (_a printer_) |
-| update_info | Extra information about the data source. New words that are added here come from the [Målfrid corpus](https://www.nb.no/sprakbanken/en/resource-catalogue/oai-nb-no-sbr-69/) or the [Norwegian Newspaper Corpus Bokmål](https://www.nb.no/sprakbanken/en/resource-catalogue/oai-clarino-uib-no-avis-plain/) |
+| update_info | Reference to the data source. |
 | nofabet_transcription | Transcription with the [NoFAbet](https://github.com/peresolb/g2p-no#transcription-standard)  notation |
 | ipa_transcription | Transcription with the [IPA](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet) notation |
 | sampa_transcription | Transcription with the [X-SAMPA](https://en.wikipedia.org/wiki/X-SAMPA) notation |
 
-## Parameterverdier
+The conversion from NoFAbet to the other transcription standards is done with code from [Sprakbanken/convert_nofabet](https://github.com/Sprakbanken/convert_nofabet).
 
-Skriptet definerer parameterverdier for inndata og hvilke prosesser leksikonet går gjennom med `lexupdater update`-kommandoen:
+## Parameters
 
-Parameter | Beskrivelse
+The script explicitly sets input arguments and flags to configure the process that the lexicon is going through with the `lexupdater update` command:
+
+Parameter | Description
 --- | ---
-`-v, -vv` | Ordrikhet (av eng. "verbosity") i loggen, som skrives til `data/output/log.txt`
-`-db, --database` |  Databasefilen med NST-leksikonet.
-`-n, --newwords-path` | Nyord legges til fra `data/input/newwords_2022.csv`-filen. Nyordene som Språkbanken har lagt til har prefikset "NB" foran løpenummeret i `"wordform_id"`. Nyordene er hentet fra Norsk Aviskorpus og Målfrid-korpuset. `"update_info"`-feltet indikerer hvilket korpus ordene kommer fra.
-`-d, --dialects` | Uttalevariantene som transkripsjonene skal oppdateres for. Utdata er én fil per verdi som angis med dette flagget. Språkbanken har utviklet regler for 5 dialektområder (østnorsk (`e`), sørvestnorsk (`sw`), vestnorsk (`w`), trøndersk (`t`), nordnorsk (`n`) ) og to uttalevarianter per dialekt. Talenære (`spoken`) transkripsjoner ligner spontan tale på dialekten. Skriftnære (`written`) transkripsjoner ligner høytlesning av bokmålstekst på den gitte dialekten.
-`-r, --rules-file` | python-fil med regelsett-`dict`-objekter. Dialektvariasjonen er generert med regex-mønstre og "søk-erstatt"-transformasjoner. Regelfilene `rules_v1.py` og `exemptions_v1.py` er utviklet av Språkbanken 2021-2022.
-`-e, --exemptions-file` | python-fil med `dict`-objekter som angir hvilke ord et regelsett skal ignorere.
+`-v, -vv` | Verbosity of the output log written to `stdout`. `-v` includes `INFO` messages, and `-vv` includes `DEBUG` messages. All logging messages are written to `data/output/log.txt` regardless of this flag.
+`-db, --database` |  File path to the SQLite database file with the NST lexicon.
+`-n, --newwords-path` | File path to a csv file with new word records to add. Each new word (row) in the file gets a `wordform_id` with the prefix "NB" and a count number.
+`-d, --dialects` | Categories of pronunciation variation that the transcriptions are updated for. The command writes 1 csv file for each argument given by this flag.
+`-r, --rules-file` | python file with ruleset `dict` objects. The dialectal variation is generated with regex patterns and replacement strings, as well as constraints. `-e, --exemptions-file` | python file with `dict`-objects indicating words that should be ignored by a given ruleset.
+
+
+## Files in `data/input`
+
+These files have been developed by linguists in the Norwegian Language Bank 2021-2022.
+
+Filename | Description
+--- | ---
+`newwords_2022.csv` | Each row contains the wordform (`token`), a main East Norwegian `transcription`, up to 3 `alternative_transcription`s, the `pos`-tag and `morphology` features of the word. These words come from the [Målfrid corpus](https://www.nb.no/sprakbanken/en/resource-catalogue/oai-nb-no-sbr-69/) or the [Norwegian Newspaper Corpus Bokmål](https://www.nb.no/sprakbanken/en/resource-catalogue/oai-clarino-uib-no-avis-plain/), which is indicated in the `update_info` field.
+`rules_v1.py` | The Norwegian Language Bank has developed transformation rules for 5 Norwegian dialectal areas (East (`e`), South-West (`sw`), West (`w`), Trøndelag (`t`), North (`n`) ), and for 2 variants per dialect: `spoken` transcriptions are close to spontaneous speech in the given dialect, and `written` transcriptions are closer to the pronunciation of a bokmål manuscript being read out loud in the given dialect.
+`exemptions_v1.py` | Specific wordlists that should be ignored by rulesets defined in `rules_v1.py`. The ruleset `name` value maps to the exemption `ruleset` value.
 
 ## Database file
 
-Databasefilen har to tabeller, som kan kobles sammen med feltet `unique_id`.
+The SQLite file has two tables, which can be joined with the `unique_id` field.
 
-  1. `words`: Indeksen er feltet `word_id`. Inneholder bl.a. ordformer på bokmål (`wordform`), ordklasser (`pos`) og morfologiske trekk (`feats`), samt `unique_id`.
-  2. `base`: Indeksen er feltet `pron_id`. Inneholder uttaletranskripsjoner (`nofabet`) på transkripsjonsstandarden NoFAbet. En konverteringstabell mellom [X-SAMPA](https://en.wikipedia.org/wiki/X-SAMPA) og NoFAbet er tilgjengelig [her](https://www.nb.no/sbfil/verktoy/nofa/NoFA-no-1_0.pdf). Har også `unique_id`, som peker til ordformene i `words` som transkripsjonene hører til.
+  1. `words`: The index is `word_id`. Contains wordforms in bokmål (`wordform`), part-of-speech (`pos`), and morphological features (`feats`), as well as `unique_id`, and more.
+  2. `base`: The index is `pron_id`. Contains pronunciation transcriptions for East Norwegian (`nofabet`). A mapping between the [X-SAMPA](https://en.wikipedia.org/wiki/X-SAMPA) transcription standard and the NoFAbet notation can be found [here](https://www.nb.no/sbfil/verktoy/nofa/NoFA-en-1_0.pdf). Values in `unique_id` maps to the transcription's written wordform in `words`.
 
-## Kontakt
+## Contact
 
-Har du spørsmål eller problemer med å kjøre koden? Opprett et [issue](https://github.com/Sprakbanken/nb_uttale/issues).
+If you have questions, suggestions or problems running the code, please create an [issue](https://github.com/Sprakbanken/nb_uttale/issues).
