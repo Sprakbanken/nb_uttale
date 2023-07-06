@@ -30,6 +30,12 @@ For more info on the database file, see [here](#database-file).
 ./generate.sh
 ```
 
+In case you get "Permission denied" to run the script, change your user permissions:
+
+```shell
+chmod 700 generate.sh
+```
+
 ## Output
 
 The script writes 10 csv files to file paths `data/output/{DIALECT}_pronunciation_lexicon.csv`, where DIALECT is one of the following 10:

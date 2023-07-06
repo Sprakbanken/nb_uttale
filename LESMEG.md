@@ -29,6 +29,12 @@ Mer info om innholdet i databasefilen står [her](#databasefilen).
 ./generate.sh
 ```
 
+Hvis du får "Permission denied" til å kjøre skriptet, endre brukertillatelsene dine og prøv igjen:
+
+```shell
+chmod 700 generate.sh
+```
+
 ## Utdata
 
 Utdata er 10 csv-filer som heter `data/output/{DIALEKT}_pronunciation_lexicon.csv`, der DIALEKT er en av disse 10 (Se [her](#inndatafilene-i-datainput) for mer info om dialektene):
