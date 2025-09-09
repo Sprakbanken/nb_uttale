@@ -2,7 +2,7 @@
 
 [![lang-button](https://img.shields.io/badge/-Norsk-grey)](https://github.com/Sprakbanken/nb_uttale/blob/main/LESMEG.md) [![lang-button](https://img.shields.io/badge/-English-blue)](https://github.com/Sprakbanken/nb_uttale/blob/main/README.md)
 
-Dette repoet inneholder skript og data for å generere dialektspesifikke versjoner av [NST uttaleleksikon for bokmål](https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-23/) fra Språkbankens [ressurskatalog](https://www.nb.no/sprakbanken/ressurskatalog/).
+Dette repoet inneholder skript og data for å generere dialektspesifikke versjoner av det opprinnelige [NST uttaleleksikon for bokmål](https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-23/) fra Språkbankens ressurskatalog, med et tillegg på 25 000 nyord. De ferdig genererte leksikonfilene kan også lastes ned derfra: [NB Uttale](https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-79/).
 
 ## Oppsett
 

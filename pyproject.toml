@@ -1,6 +1,6 @@
 [project]
 name = "nb_uttale"
-version = "0.1.0"
+version = "1.0"
 description = "Pronunication lexica with dialect variation for spoken Norwegian"
 authors = [
     {name = "Språkbanken", email = "sprakbanken@nb.no"},

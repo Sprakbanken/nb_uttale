@@ -5,6 +5,7 @@
 This repo contains a script and data to generate pronunication lexica with dialect variation for spoken Norwegian, and with wordforms in the bokmål written standard.
 
 The base lexicon is [NST Pronunciation Lexicon for Norwegian Bokmål](https://www.nb.no/sprakbanken/en/resource-catalogue/oai-nb-no-sbr-23/) from the Norwegian Language Bank's [resource catalogue](https://www.nb.no/sprakbanken/en/resource-catalogue/).
+The generated dialect specific lexica can also be downloaded from the catalogue: [NB Uttale](https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-79/).
 
 ## Requirements
 
