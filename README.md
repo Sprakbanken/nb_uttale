@@ -8,15 +8,17 @@ The base lexicon is [NST Pronunciation Lexicon for Norwegian Bokmål](https://ww
 
 ## Requirements
 
-- Ensure you have python >= 3.8 installed ([download python here](https://www.python.org/downloads/))
-
-- Install `lexupdater`:
+- Create a virtual environment in python and install the project dependencies, e.g. with `uv` or `pdm`:
 
     ```shell
-    python -m pip install lexupdater-0.7.5-py3-none-any.whl
+    # UV 
+    uv sync 
+
+    # PDM
+    pdm install
     ```
 
-- Download the SQLite database file `nst_lexicon_bm.db`:
+- Download the SQLite database file [`nst_lexicon_bm.db`](https://www.nb.no/sbfil/uttaleleksikon/nst_lexicon_bm.db):
 
     ```shell
     wget -P data/input https://www.nb.no/sbfil/uttaleleksikon/nst_lexicon_bm.db

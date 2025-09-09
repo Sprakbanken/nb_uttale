@@ -2,20 +2,21 @@
 
 [![lang-button](https://img.shields.io/badge/-Norsk-grey)](https://github.com/Sprakbanken/nb_uttale/blob/main/LESMEG.md) [![lang-button](https://img.shields.io/badge/-English-blue)](https://github.com/Sprakbanken/nb_uttale/blob/main/README.md)
 
-
 Dette repoet inneholder skript og data for å generere dialektspesifikke versjoner av [NST uttaleleksikon for bokmål](https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-23/) fra Språkbankens [ressurskatalog](https://www.nb.no/sprakbanken/ressurskatalog/).
 
 ## Oppsett
 
-- Forsikre deg om at du har python >= 3.8 installert ([last ned python her](https://www.python.org/downloads/))
-
-- Installer `lexupdater`:
+- Opprett et virtuelt miljø i python og installer konverteringsverktøyet `lexupdater`, f.eks. med `uv` eller `pdm`:
 
     ```shell
-    python -m pip install lexupdater-0.7.5-py3-none-any.whl
+    # UV
+    uv sync
+
+    # PDM
+    pdm install
     ```
 
-- Last ned SQLite-databasefilen `nst_lexicon_bm.db` med NST uttaleleksikon:
+- Last ned SQLite-databasefilen [`nst_lexicon_bm.db`](https://www.nb.no/sbfil/uttaleleksikon/nst_lexicon_bm.db) med NST uttaleleksikon:
 
     ```shell
     wget -P data/input https://www.nb.no/sbfil/uttaleleksikon/nst_lexicon_bm.db

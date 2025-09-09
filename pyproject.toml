@@ -9,7 +9,6 @@ dependencies = ["lexupdater @ https://github.com/Sprakbanken/nb_uttale/releases/
 readme = "README.md"
 license = {text = "MIT"}
 
-
 [tool.pdm]
 distribution = true
 
