@@ -6,7 +6,7 @@ DIR="data/input"
 # GENERER UTTALELEKSIKA MED DIALEKTVARIASJONER
 lexupdater -v \
     --database "${DIR}/nst_lexicon_bm.db" \
-    --newwords-path "${DIR}/newwords_2022.csv" \
+    --newword-files "${DIR}/newwords_2022.csv" \
     --dialects e_spoken \
         -d e_written \
         -d sw_spoken \
