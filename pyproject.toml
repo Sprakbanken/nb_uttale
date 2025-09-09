@@ -5,9 +5,12 @@ description = "Pronunication lexica with dialect variation for spoken Norwegian"
 authors = [
     {name = "Språkbanken", email = "sprakbanken@nb.no"},
 ]
-dependencies = ["lexupdater @ https://github.com/Sprakbanken/nb_uttale/releases/download/lexupdater/lexupdater-0.6.1-py2.py3-none-any.whl"] 
+dependencies = [
+    "lexupdater @ https://github.com/Sprakbanken/nb_uttale/releases/download/lexupdater/lexupdater-0.6.1-py2.py3-none-any.whl",
+] 
 readme = "README.md"
-license = {text = "MIT"}
+license = {text = "CC-0"}
+requires-python = ">=3.8"
 
 [tool.pdm]
 distribution = true
