@@ -1,0 +1,18 @@
+[project]
+name = "nb_uttale"
+version = "0.1.0"
+description = "Pronunication lexica with dialect variation for spoken Norwegian"
+authors = [
+    {name = "Språkbanken", email = "sprakbanken@nb.no"},
+]
+dependencies = ["lexupdater @ https://github.com/Sprakbanken/nb_uttale/releases/download/lexupdater/lexupdater-0.6.1-py2.py3-none-any.whl"] 
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = true
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
